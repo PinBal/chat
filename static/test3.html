@@ -1,0 +1,55 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+
+<script>
+
+
+// lekeri a blacklistet ( azert .txt mert nem tudom xdd )
+
+fetch('./whitelist.json')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(xd) {
+        //console.log(xd);
+	//alert(xd);
+
+	 for (var i = 0; i < xd.ips.length; i++) {
+		 var counter = xd.ips[i]; 
+		//console.log(counter);
+
+                // itt lekeri a client ip-et
+
+                $.get( "https://api.ipify.org?format=json", function( data ) {
+                                $( "#real-public-ip" ).html( data.ip );
+                               // console.log( data );
+                                var ip = data.ip;
+                                var ip2 = counter;
+
+                  		        // itt megnezi hogy a blacklistes ip passzol e az aktualissal
+
+                                if(ip == ip2){
+                                        alert("be vagy engedve..");
+                                }else{
+					alert("your ip is not allowed to request this site.. dont try vpn or proxy");
+					
+				}
+
+                });
+
+	 }
+      });
+    }
+  )
+
+</script>
+

@@ -1,0 +1,16 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script> // A $( document ).ready() block. $( document ).ready(function() {
+console.log( "ready!" );
+
+$.get( "https://api.ipify.org?format=json", function( data ) {
+	$( "#real-public-ip" ).html( data.ip );
+	console.log( data );
+	//alert( "Load was performed." );
+});
+
+
+</script>
+
